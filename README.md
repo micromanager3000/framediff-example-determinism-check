@@ -1,14 +1,16 @@
 # FrameDiff example · determinism check
 
-The M0 determinism proof, rebuilt on the [`framediff`](../../packages/framediff) library (it replaces
+The M0 determinism proof, rebuilt on the [`framediff`](https://github.com/micromanager3000/framediff) library (it replaces
 the old throwaway `spikes/m0` POC). A composition that is a **pure function of the frame** is
 rendered **twice** for each spot-check frame via the library's
 `checkCompositionDeterminism()`, and the
 **pre-encode pixels are SHA-256'd** — equal hashes ⇒ deterministic on this machine.
 
 ```sh
-npm install        # from the repo root (workspaces)
-npm run dev --workspace examples/determinism-check
+git clone --recurse-submodules https://github.com/micromanager3000/framediff-example-determinism-check.git
+cd framediff-example-determinism-check
+npm install
+npm run dev
 ```
 
 Open in Chrome/Edge/Brave/Arc — it auto-runs on load and shows each frame's thumbnail, its hash,
@@ -25,5 +27,11 @@ and a ✅/❌, plus an overall verdict (`data-testid="verdict"`).
   second determinism utility.
 
 Cross-*machine* pixel-identity isn't promised (fonts/GPU differ), but frame *selection* is exact
-everywhere. See [`../../docs/M0-FINDINGS.md`](../../docs/M0-FINDINGS.md) for the original spike's
+everywhere. See [`M0-FINDINGS.md`](https://github.com/micromanager3000/framediff/blob/main/docs/M0-FINDINGS.md) for the original spike's
 measured results.
+
+## FrameDiff dependency
+
+Until the FrameDiff packages are published to npm, this repository pins the engine source in
+`vendor/framediff`. Update it with `git submodule update --remote vendor/framediff`, then commit the
+new gitlink after the example passes its checks.
