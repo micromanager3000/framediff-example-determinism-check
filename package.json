@@ -15,6 +15,7 @@
     "typecheck": "npm run check"
   },
   "dependencies": {
+    "@framediff/common-api": "file:vendor/framediff/packages/common-api",
     "@framediff/studio-model": "file:vendor/framediff/packages/studio-model",
     "framediff": "file:vendor/framediff/packages/framediff"
   },
